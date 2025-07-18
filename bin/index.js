@@ -197,6 +197,20 @@ const init = async function () {
 		);
 	}
 
+	// updating README
+	{
+		const filePath = path.join(targetPath, "README.md");
+		if (fs.existsSync(filePath)) {
+			fs.writeFileSync(
+				filePath,
+				fs
+					.readFileSync(filePath)
+					.toString("utf-8")
+					.replace(`# paste-template`, `# ${projectName}`)
+			);
+		}
+	}
+
 	// initializing rokit
 	childProcess.spawnSync("rokit", ["install"], { cwd: targetPath });
 	console.log(`${colors.green(symbols.check)} Initialized Rokit!`);
