@@ -22,17 +22,12 @@ const hasCLI = function (name) {
 
 const getFolder = function () {
 	const folder = path.join(homeDirectory, ".axype");
-	if (!fs.existsSync(folder)) {
-		fs.mkdirSync(folder);
+	if (!fs.existsSync(folder)) fs.mkdirSync(folder);
 
-		const files = ["secret"];
-		files.forEach((v) => {
-			const pth = path.join(folder, v);
-			if (!fs.existsSync()) {
-				fs.writeFileSync(pth, "");
-			}
-		});
-	}
+	["secret"].forEach((v) => {
+		const pth = path.join(folder, v);
+		if (!fs.existsSync(pth)) fs.writeFileSync(pth, "");
+	});
 
 	return folder;
 };
